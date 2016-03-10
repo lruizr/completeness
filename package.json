@@ -1,0 +1,8 @@
+{
+	"name": "metricsServer",
+	"description": "Servidor web para recolección de métricas",
+	"version": "1.0.0",
+	"dependencies": {
+		"express": "3.x"
+	}
+}

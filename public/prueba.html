@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<head>
+	<script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
+	<link rel="import" href="/twitter-timeline.html">
+	<title>Página de prueba de Twitter timeline</title>
+</head>
+
+<body unresolved>
+	<twitter-timeline endpoint="http://twitter-timeline-app.appspot.com/oauth/twitter" accessToken="3072043347-T00ESRJtzlqHnGRNJZxrBP3IDV0S8c1uGIn1vWf" secretToken="OBPFI8deR6420txM1kCJP9eW59Xnbpe5NCbPgOlSJRock" consumerKey="J4bjMZmJ6hh7r0wlG9H90cgEe" consumerSecret="8HIPpQgL6d3WWQMDN5DPTHefjb5qfvTFg78j1RdZbR19uEPZMf" count="200" language="es">
+	</twitter-timeline>
+
+	<script type="text/javascript">
+		var text = document.getElementByClass("text");
+		var xhr = new XMLHttpRequest();
+
+		xhr.open("POST", "/data");
+		xhr.send(text);
+	</script>
+</body>
