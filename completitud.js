@@ -5,7 +5,8 @@ var path = require('path');
 
 var app = express();
 app.use(express.static('public'));
-app.use(express.static('bower_components'));
+//app.use(express.static('bower_components'));
+
 var client = new Twitter({
 	consumer_key: 'Nd5GKMznzMpEvZswS4Dauh63Q',
 	consumer_secret: 'mqDrczSwkHn17xgHq9n18YkkI2t1WMq7lgDW7YdE10oL4fPcgP',
