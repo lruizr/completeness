@@ -34,7 +34,7 @@ app.post('/data', function(req, res) {
 
 app.listen(8080, function() {
 	console.log("Servidor up!");
-}, "0.0.0.0");
+});
 
 
 String.prototype.to_rfc3986 = function (){
