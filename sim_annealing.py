@@ -31,18 +31,36 @@ def newAngle():
 			else:
 				nodo4[key] = 0
 
+	actives = [nodo1["x12"], nodo1["x13"], nodo2["x23"], nodo2["x24"], nodo3["x34"]]
+	nodo1["output"] = [nodo1["x12"], nodo1["x13"]]
+	nodo2["input"] = [nodo1["x12"]]
+	nodo2["output"] = [nodo2["x23"], nodo2["x24"]]
+	nodo3["input"] = [nodo3["x13"], nodo["x23"]]
+	nodo3["output"] = [nodo3["x34"]]
+	nodo4["input"] = [nodo4["x24"], nodo4["x34"]]
+
 def estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4):
 	value1 = sum(nodo1["output"]) - 1
-	value2 = abs(sum(nodo2["output"]) - sum(nodo2["input"]))
-	value3 = abs(sum(nodo3["output"]) - sum(nodo3["input"]))
+	value2 = sum(nodo2["output"]) - sum(nodo2["input"])
+	value3 = sum(nodo3["output"]) - sum(nodo3["input"])
 	value4 = sum(nodo4["input"]) - 1
-	return actives * distances_list + math.pow(value1, 2) + math.pow(value2, 2) + \
+	addition = 0
+	for active, distance in zip(actives, distances):
+		addition += active*distance
+	return addition + math.pow(value1, 2) + math.pow(value2, 2) + \
 			math.pow(value3, 2) + math.pow(value4, 2)
 
 def accept(iter):
 	num = random.randrange(1)
 	prob = math.exp(-iter/total)
 	if num > prob:
+		return true
+	else:
+		return false
+
+def check():
+	if (sum(nodo1["output"]) - 1) >= 0 and (sum(nodo2["input"]) - sum(nodo2["output"])) >= 0 and (sum(nodo3["input"]) - sum(nodo3["output"])) >= 0 and \
+		(sum(nodo4["input"]) - 1) >= 0:
 		return true
 	else:
 		return false
@@ -68,7 +86,7 @@ nodo4 = {"x24": 0,
 		"x34": 0,
 		"input": [0, 0], # x24, x34
 		"output": []}
-distances_list = [15, 10, 5, 20, 4]
+distances_list = [15, 10, 5, 20, 4] #x12, x13, x23, x24, x34
 actives = []
 for i in nodo1["output"]:
 	actives.append(i)
@@ -105,10 +123,12 @@ for i in range(total):
 	newAngle()
 	current_h = estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4)
 	if current_h < prev_h:
-		prev_h = current_h
+		if check():
+			prev_h = current_h
 	else:
 		if accept():
-			prev_h = current_h
+			if check():
+				prev_h = current_h
 
 for key in angles.keys():
 	print angles[key]
