@@ -4,9 +4,7 @@ import math
 
 def newAngle():
 	for key in angles.keys():
-		num = random.randrange(7)
-		while num > 6.28:
-			num = random.randrange(7)
+		num = random.uniform(0,6.28)
 		angles[key] = num
 	for key in cosenes.keys():
 		cosenes[key] = math.cos(angles[key])
@@ -35,7 +33,7 @@ def newAngle():
 	nodo1["output"] = [nodo1["x12"], nodo1["x13"]]
 	nodo2["input"] = [nodo1["x12"]]
 	nodo2["output"] = [nodo2["x23"], nodo2["x24"]]
-	nodo3["input"] = [nodo3["x13"], nodo["x23"]]
+	nodo3["input"] = [nodo3["x13"], nodo3["x23"]]
 	nodo3["output"] = [nodo3["x34"]]
 	nodo4["input"] = [nodo4["x24"], nodo4["x34"]]
 
@@ -45,7 +43,7 @@ def estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4):
 	value3 = sum(nodo3["output"]) - sum(nodo3["input"])
 	value4 = sum(nodo4["input"]) - 1
 	addition = 0
-	for active, distance in zip(actives, distances):
+	for active, distance in zip(actives, distances_list):
 		addition += active*distance
 	return addition + math.pow(value1, 2) + math.pow(value2, 2) + \
 			math.pow(value3, 2) + math.pow(value4, 2)
@@ -54,16 +52,16 @@ def accept(iter):
 	num = random.randrange(1)
 	prob = math.exp(-iter/total)
 	if num > prob:
-		return true
+		return True
 	else:
-		return false
+		return False
 
 def check():
 	if (sum(nodo1["output"]) - 1) >= 0 and (sum(nodo2["input"]) - sum(nodo2["output"])) >= 0 and (sum(nodo3["input"]) - sum(nodo3["output"])) >= 0 and \
 		(sum(nodo4["input"]) - 1) >= 0:
-		return true
+		return True
 	else:
-		return false
+		return False
 
 # Main program
 
@@ -87,7 +85,7 @@ nodo4 = {"x24": 0,
 		"input": [0, 0], # x24, x34
 		"output": []}
 distances_list = [15, 10, 5, 20, 4] #x12, x13, x23, x24, x34
-actives = []
+actives = [0, 0, 0, 0, 0]
 for i in nodo1["output"]:
 	actives.append(i)
 for i in nodo2["output"]:
@@ -105,18 +103,15 @@ angles = {"x12": 0,
 		 "x13": 0,
 		 "x23": 0,
 		 "x24": 0,
-		 "x32": 0,
 		 "x34": 0}
 cosenes = {"x12": 0,
 		 "x13": 0,
 		 "x23": 0,
 		 "x24": 0,
-		 "x32": 0,
 		 "x34": 0}
 prev_h = 1000000
 total = 10000
 current_h = 0
-iter = 0
 
 # Empieza la iteracion
 for i in range(total):
@@ -126,7 +121,7 @@ for i in range(total):
 		if check():
 			prev_h = current_h
 	else:
-		if accept():
+		if accept(i):
 			if check():
 				prev_h = current_h
 
