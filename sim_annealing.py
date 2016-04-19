@@ -57,8 +57,8 @@ def accept(iter):
 		return False
 
 def check():
-	if (sum(nodo1["output"]) - 1) >= 0 and (sum(nodo2["input"]) - sum(nodo2["output"])) >= 0 and (sum(nodo3["input"]) - sum(nodo3["output"])) >= 0 and \
-		(sum(nodo4["input"]) - 1) >= 0:
+	if (nodo1["x12"] + nodo1["x13"] - 1) == 0 and (nodo2["x12"] - nodo2["x23"] - nodo2["x24"]) == 0 and (nodo3["x13"] + nodo3["x23"] - nodo3["x34"]) == 0 and \
+		(nodo4["x24"] + nodo4["x34"] - 1) == 0:
 		return True
 	else:
 		return False
@@ -110,7 +110,7 @@ cosenes = {"x12": 0,
 		 "x24": 0,
 		 "x34": 0}
 prev_h = 1000000
-total = 10000
+total = 100000
 current_h = 0
 
 # Empieza la iteracion
@@ -118,12 +118,11 @@ for i in range(total):
 	newAngle()
 	current_h = estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4)
 	if current_h < prev_h:
-		if check():
-			prev_h = current_h
+		prev_h = current_h
 	else:
 		if accept(i):
-			if check():
-				prev_h = current_h
+			prev_h = current_h
 
-for key in angles.keys():
-	print angles[key]
+if check():
+	for key in angles.keys():
+		print angles[key]
