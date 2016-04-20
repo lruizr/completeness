@@ -6,28 +6,33 @@ def newAngle():
 	for key in angles.keys():
 		num = random.uniform(0,6.28)
 		angles[key] = num
+		#print angle[key]
 	for key in cosenes.keys():
 		cosenes[key] = math.cos(angles[key])
 		if key in nodo1.keys():
 			if cosenes[key] >= 0:
-				nodo1[key] = 1
-			else:
 				nodo1[key] = 0
+			else:
+				nodo1[key] = 1
+			#print nodo1[key]
 		if key in nodo2.keys():
 			if cosenes[key] >= 0:
-				nodo2[key] = 1
-			else:
 				nodo2[key] = 0
+			else:
+				nodo2[key] = 1
+			#print nodo2[key]
 		if key in nodo3.keys():
 			if cosenes[key] >= 0:
-				nodo3[key] = 1
-			else:
 				nodo3[key] = 0
+			else:
+				nodo3[key] = 1
+			#print nodo3[key]
 		if key in nodo4.keys():
 			if cosenes[key] >= 0:
-				nodo4[key] = 1
-			else:
 				nodo4[key] = 0
+			else:
+				nodo4[key] = 1
+			#print nodo4[key]
 
 	actives = [nodo1["x12"], nodo1["x13"], nodo2["x23"], nodo2["x24"], nodo3["x34"]]
 	nodo1["output"] = [nodo1["x12"], nodo1["x13"]]
@@ -36,6 +41,11 @@ def newAngle():
 	nodo3["input"] = [nodo3["x13"], nodo3["x23"]]
 	nodo3["output"] = [nodo3["x34"]]
 	nodo4["input"] = [nodo4["x24"], nodo4["x34"]]
+	#print actives
+	#print nodo1
+	#print nodo2
+	#print nodo3
+	#print nodo4
 
 def estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4):
 	value1 = sum(nodo1["output"]) - 1
@@ -57,8 +67,8 @@ def accept(iter):
 		return False
 
 def check():
-	if (nodo1["x12"] + nodo1["x13"] - 1) == 0 and (nodo2["x12"] - nodo2["x23"] - nodo2["x24"]) == 0 and (nodo3["x13"] + nodo3["x23"] - nodo3["x34"]) == 0 and \
-		(nodo4["x24"] + nodo4["x34"] - 1) == 0:
+	if (nodo1["x12"] + nodo1["x13"] - 1) >= 0 and (nodo2["x12"] - nodo2["x23"] - nodo2["x24"]) >= 0 and (nodo3["x13"] + nodo3["x23"] - nodo3["x34"]) >= 0 and \
+		(nodo4["x24"] + nodo4["x34"] - 1) >= 0:
 		return True
 	else:
 		return False
@@ -116,6 +126,9 @@ current_h = 0
 # Empieza la iteracion
 for i in range(total):
 	newAngle()
+	while not check():
+		newAngle()
+
 	current_h = estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4)
 	if current_h < prev_h:
 		prev_h = current_h
@@ -123,6 +136,5 @@ for i in range(total):
 		if accept(i):
 			prev_h = current_h
 
-if check():
-	for key in angles.keys():
-		print angles[key]
+for key in angles.keys():
+	print angles[key]
