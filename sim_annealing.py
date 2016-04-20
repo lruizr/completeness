@@ -59,7 +59,7 @@ def estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4):
 			math.pow(value3, 2) + math.pow(value4, 2)
 
 def accept(iter):
-	num = random.randrange(1)
+	num = random.uniform(0,1)
 	prob = math.exp(-iter/total)
 	if num > prob:
 		return True
@@ -131,10 +131,13 @@ for i in range(total):
 
 	current_h = estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4)
 	if current_h < prev_h:
-		prev_h = current_h
+		if check():
+			prev_h = current_h
 	else:
 		if accept(i):
-			prev_h = current_h
+			if check():
+				prev_h = current_h
 
 for key in angles.keys():
 	print angles[key]
+
