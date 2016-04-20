@@ -1,10 +1,13 @@
 #!bin/python
 import random
 import math
+import pdb
+
+#pdb.set_trace()
 
 def newAngle():
 	for key in angles.keys():
-		num = random.uniform(0,6.28)
+		num = random.uniform(0,1) * 2 * math.pi
 		angles[key] = num
 		#print angle[key]
 	for key in cosenes.keys():
@@ -42,6 +45,7 @@ def newAngle():
 	nodo3["output"] = [nodo3["x34"]]
 	nodo4["input"] = [nodo4["x24"], nodo4["x34"]]
 	#print actives
+	print cosenes
 	#print nodo1
 	#print nodo2
 	#print nodo3
@@ -119,7 +123,7 @@ cosenes = {"x12": 0,
 		 "x23": 0,
 		 "x24": 0,
 		 "x34": 0}
-prev_h = 1000000
+prev_h = 30
 total = 100000
 current_h = 0
 
