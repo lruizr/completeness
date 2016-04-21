@@ -3,7 +3,7 @@ import random
 import math
 import pdb
 
-#pdb.set_trace()
+pdb.set_trace()
 
 def newAngle():
 	for key in angles.keys():
@@ -45,7 +45,7 @@ def newAngle():
 	nodo3["output"] = [nodo3["x34"]]
 	nodo4["input"] = [nodo4["x24"], nodo4["x34"]]
 	#print actives
-	print cosenes
+	#print cosenes
 	#print nodo1
 	#print nodo2
 	#print nodo3
@@ -71,6 +71,7 @@ def accept(iter):
 		return False
 
 def check():
+	# Comprobar que los nodos son diferentes de 0 (una de las salidas y una de las entradas es distinta de 0)
 	if (nodo1["x12"] + nodo1["x13"] - 1) >= 0 and (nodo2["x12"] - nodo2["x23"] - nodo2["x24"]) >= 0 and (nodo3["x13"] + nodo3["x23"] - nodo3["x34"]) >= 0 and \
 		(nodo4["x24"] + nodo4["x34"] - 1) >= 0:
 		return True
@@ -99,7 +100,7 @@ nodo4 = {"x24": 0,
 		"input": [0, 0], # x24, x34
 		"output": []}
 distances_list = [15, 10, 5, 20, 4] #x12, x13, x23, x24, x34
-actives = [0, 0, 0, 0, 0]
+actives = []
 for i in nodo1["output"]:
 	actives.append(i)
 for i in nodo2["output"]:
