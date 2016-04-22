@@ -3,7 +3,7 @@ import random
 import math
 import pdb
 
-pdb.set_trace()
+#pdb.set_trace()
 
 def newAngle():
 	for key in angles.keys():
@@ -72,8 +72,9 @@ def accept(iter):
 
 def check():
 	# Comprobar que los nodos son diferentes de 0 (una de las salidas y una de las entradas es distinta de 0)
-	if (nodo1["x12"] + nodo1["x13"] - 1) >= 0 and (nodo2["x12"] - nodo2["x23"] - nodo2["x24"]) >= 0 and (nodo3["x13"] + nodo3["x23"] - nodo3["x34"]) >= 0 and \
-		(nodo4["x24"] + nodo4["x34"] - 1) >= 0:
+	if sum(nodo1["output"]) in [0,1] and sum(nodo2["input"]) in [0,1] and sum(nodo2["output"]) in [0,1] and sum(nodo3["input"]) in [0,1] and sum(nodo3["output"]) in [0,1] and \
+		sum(nodo4["input"]) in [0,1] and (nodo1["x12"] + nodo1["x13"] - 1) >= 0 and (nodo2["x12"] - nodo2["x23"] - nodo2["x24"]) >= 0 and \
+		(nodo3["x13"] + nodo3["x23"] - nodo3["x34"]) >= 0 and (nodo4["x24"] + nodo4["x34"] - 1) >= 0:
 		return True
 	else:
 		return False
@@ -143,6 +144,8 @@ for i in range(total):
 			if check():
 				prev_h = current_h
 
-for key in angles.keys():
-	print angles[key]
+# for key in angles.keys():
+# 	print angles[key]
 
+print angles
+print cosenes
