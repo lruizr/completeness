@@ -94,15 +94,25 @@ nodo2 = {"x12": 0,
 nodo3 = {"x13": 0,
 		"x23": 0,
 		"x34": 0,
+		"x35": 0,
 		"input": [0, 0], # x13, x23
-		"output": [0]} # x34
+		"output": [0, 0]} # x34, x35
 nodo4 = {"x24": 0,
 		"x34": 0,
+		"x45": 0,
+		"x46": 0,
 		"input": [0, 0], # x24, x34
+		"output": [0, 0]} # x45, x46
+nodo5 = {"x35": 0,
+		"x45": 0,
+		"x56": 0,
+		"input": [0, 0],
+		"output": [0]}
+nodo6 = {"x46": 0,
+		"x56": 0,
+		"input": [0, 0],
 		"output": []}
-nodo5 = {}
-nodo6 = {}
-distances_list = [15, 10, 5, 20, 4] #x12, x13, x23, x24, x34
+distances_list = [15, 10, 5, 20, 4] #x12, x13, x23, x24, x34, x35, x45, x46, x56
 actives = []
 for i in nodo1["output"]:
 	actives.append(i)
@@ -112,21 +122,37 @@ for i in nodo3["output"]:
 	actives.append(i)
 for i in nodo4["output"]:
 	actives.append(i)
+for i in nodo5["output"]:
+	actives.append(i)
+for i in nodo6["output"]:
+	actives.append(i)
 distances = {"x12": 15,
 			"x13": 10,
 			"x23": 5,
 			"x24": 20,
-			"x34": 4}
+			"x34": 4,
+			"x35": ,
+			"x45": ,
+			"x46": ,
+			"x56": }
 angles = {"x12": 0,
 		 "x13": 0,
 		 "x23": 0,
 		 "x24": 0,
-		 "x34": 0}
+		 "x34": 0,
+		 "x35": 0,
+		 "x45": 0,
+		 "x46": 0,
+		 "x56": 0}
 cosenes = {"x12": 0,
 		 "x13": 0,
 		 "x23": 0,
 		 "x24": 0,
-		 "x34": 0}
+		 "x34": 0,
+		 "x35": 0,
+		 "x45": 0,
+		 "x46": 0,
+		 "x56": 0}
 prev_h = 30
 total = 100000
 current_h = 0
