@@ -79,9 +79,10 @@ def check():
 	else:
 		return False
 
-# Main program
+# Main program: It is a module to be imported 
 
-number_cities = 4
+def main(nodo_i, nodos, nodo_f):
+
 nodo1 = {"x12": 0,
 		"x13": 0,
 		"input": [], 

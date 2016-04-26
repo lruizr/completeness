@@ -44,6 +44,10 @@ def newAngle():
 	nodo3["input"] = [nodo3["x13"], nodo3["x23"]]
 	nodo3["output"] = [nodo3["x34"]]
 	nodo4["input"] = [nodo4["x24"], nodo4["x34"]]
+	nodo4["output"] = [nodo4["x45"], nodo4["x46"]]
+	nodo5["input"] = [nodo5["x35"], nodo5["x45"]]
+	nodo5["output"] = [nodo5["x56"]]
+	nodo6["input"] = [nodo6["x46"], nodo6["x56"]]
 	#print actives
 	#print cosenes
 	#print nodo1
@@ -55,12 +59,14 @@ def estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4):
 	value1 = sum(nodo1["output"]) - 1
 	value2 = sum(nodo2["output"]) - sum(nodo2["input"])
 	value3 = sum(nodo3["output"]) - sum(nodo3["input"])
-	value4 = sum(nodo4["input"]) - 1
+	value4 = sum(nodo4["output"]) - sum(nodo4["input"])
+	value5 = sum(nodo5["output"]) - sum(nodo5["input"])
+	value6 = sum(nodo6["input"]) - 1
 	addition = 0
 	for active, distance in zip(actives, distances_list):
 		addition += active*distance
 	return addition + math.pow(value1, 2) + math.pow(value2, 2) + \
-			math.pow(value3, 2) + math.pow(value4, 2)
+			math.pow(value3, 2) + math.pow(value4, 2) + math.pow(value5, 2) + math.pow(value6, 2)
 
 def accept(iter):
 	num = random.uniform(0,1)
@@ -72,9 +78,11 @@ def accept(iter):
 
 def check():
 	# Comprobar que los nodos son diferentes de 0 (una de las salidas y una de las entradas es distinta de 0)
-	if sum(nodo1["output"]) in [0,1] and sum(nodo2["input"]) in [0,1] and sum(nodo2["output"]) in [0,1] and sum(nodo3["input"]) in [0,1] and sum(nodo3["output"]) in [0,1] and \
-		sum(nodo4["input"]) in [0,1] and (nodo1["x12"] + nodo1["x13"] - 1) >= 0 and (nodo2["x12"] - nodo2["x23"] - nodo2["x24"]) >= 0 and \
-		(nodo3["x13"] + nodo3["x23"] - nodo3["x34"]) >= 0 and (nodo4["x24"] + nodo4["x34"] - 1) >= 0:
+	if sum(nodo1["output"]) in [0,1] and sum(nodo2["input"]) in [0,1] and sum(nodo2["output"]) in [0,1] and sum(nodo3["input"]) in [0,1] and \
+		sum(nodo3["output"]) in [0,1] and sum(nodo4["input"]) in [0,1] and sum(nodo4["output"]) in [0,1] and sum(nodo5["input"]) in [0,1] and \
+		sum(nodo5["output"]) in [0,1] and sum(nodo6["input"]) in [0,1] and (sum(nodo1["output"]) - 1) >= 0 and (sum(nodo2["input"]) - sum(nodo2["output"])) >= 0 and \
+		(sum(nodo3["input"]) - sum(nodo3["output"])) >= 0 and (sum(nodo4["input"]) - sum(nodo4["output"])) >= 0 and \
+		(sum(nodo5["input"]) - sum(nodo5["output"])) >= 0 and (sum(nodo6["input"]) - 1) >= 0:
 		return True
 	else:
 		return False
@@ -112,7 +120,6 @@ nodo6 = {"x46": 0,
 		"x56": 0,
 		"input": [0, 0],
 		"output": []}
-distances_list = [15, 10, 5, 20, 4] #x12, x13, x23, x24, x34, x35, x45, x46, x56
 actives = []
 for i in nodo1["output"]:
 	actives.append(i)
@@ -129,12 +136,15 @@ for i in nodo6["output"]:
 distances = {"x12": 15,
 			"x13": 10,
 			"x23": 5,
-			"x24": 20,
+			"x24": 12,
 			"x34": 4,
-			"x35": ,
-			"x45": ,
-			"x46": ,
-			"x56": }
+			"x35": 7,
+			"x45": 8,
+			"x46": 6,
+			"x56": 4}
+distances_list = [] #x12, x13, x23, x24, x34, x35, x45, x46, x56
+for key in distances.keys().sort():
+	distances_list.append(distances[key])
 angles = {"x12": 0,
 		 "x13": 0,
 		 "x23": 0,
