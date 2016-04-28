@@ -130,6 +130,10 @@ nodo6 = {"x46": 0,
 		"x56": 0,
 		"input": [0, 0],
 		"output": []}
+nodo7 = {}
+nodo8 = {}
+nodo9 = {}
+nodo10 = {}
 actives = []
 for i in nodo1["output"]:
 	actives.append(i)
