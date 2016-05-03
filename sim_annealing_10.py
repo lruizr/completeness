@@ -155,12 +155,12 @@ nodo9 = {"x59": 0,
 		"x69": 0,
 		"x89": 0,
 		"x910": 0,
-		"input": [0, 0, 0],
-		"output": [0]}
+		"input": [0, 0, 0], # x59, x69. x89
+		"output": [0]} # x910
 nodo10 = {"x710": 0,
 		"x810": 0,
 		"x910": 0,
-		"input": [0, 0, 0],
+		"input": [0, 0, 0], # x710, x810, x910
 		"output": []}
 actives = []
 for i in nodo1["output"]:
@@ -175,15 +175,35 @@ for i in nodo5["output"]:
 	actives.append(i)
 for i in nodo6["output"]:
 	actives.append(i)
+for i in nodo7["output"]:
+	actives.append()
+for i in nodo8["output"]:
+	actives.append()
+for i in nodo9["output"]:
+	actives.append()
+for i in nodo10["output"]:
+	actives.append()
 distances = {"x12": 15,
 			"x13": 10,
 			"x23": 5,
 			"x24": 12,
-			"x34": 4,
+			"x25": 4,
 			"x35": 7,
-			"x45": 8,
-			"x46": 6,
-			"x56": 4}
+			"x36": 8,
+			"x45": 6,
+			"x47": 6,
+			"x48": 7,
+			"x56": 4,
+			"x57": 3,
+			"x58": 4,
+			"x59": 6,
+			"x68": 5,
+			"x69": 4,
+			"x78": 7,
+			"x710": 8,
+			"x89": 5,
+			"x810": 3,
+			"x910": 2}
 distances_list = [] #x12, x13, x23, x24, x34, x35, x45, x46, x56
 keys = distances.keys()
 keys.sort()
