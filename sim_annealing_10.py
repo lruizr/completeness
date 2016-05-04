@@ -71,12 +71,16 @@ def estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4, nodo5, nodo6
 	value3 = sum(nodo3["output"]) - sum(nodo3["input"])
 	value4 = sum(nodo4["output"]) - sum(nodo4["input"])
 	value5 = sum(nodo5["output"]) - sum(nodo5["input"])
-	value6 = sum(nodo6["input"]) - 1
+	value6 = sum(nodo6["output"]) - sum(nodo6["input"])
+	value7 = sum(nodo7["output"]) - sum(nodo7["input"])
+	value8 = sum(nodo8["output"]) - sum(nodo8["input"])
+	value9 = sum(nodo9["output"]) - sum(nodo9["input"])
+	value10 = sum(nodo10["input"]) - 1
 	addition = 0
 	for active, distance in zip(actives, distances_list):
 		addition += active*distance
-	return addition + math.pow(value1, 2) + math.pow(value2, 2) + \
-			math.pow(value3, 2) + math.pow(value4, 2) + math.pow(value5, 2) + math.pow(value6, 2)
+	return addition + math.pow(value1, 2) + math.pow(value2, 2) + math.pow(value3, 2) + math.pow(value4, 2) + math.pow(value5, 2) \
+			math.pow(value6, 2) + math.pow(value7, 2) + math.pow(value8, 2) + math.pow(value9, 2) + math.pow(value10, 2)
 
 def accept(iter):
 	num = random.uniform(0,1)
@@ -204,29 +208,53 @@ distances = {"x12": 15,
 			"x89": 5,
 			"x810": 3,
 			"x910": 2}
-distances_list = [] #x12, x13, x23, x24, x34, x35, x45, x46, x56
+distances_list = [] # All distances
 keys = distances.keys()
 keys.sort()
 for key in keys:
 	distances_list.append(distances[key])
 angles = {"x12": 0,
-		 "x13": 0,
-		 "x23": 0,
-		 "x24": 0,
-		 "x34": 0,
-		 "x35": 0,
-		 "x45": 0,
-		 "x46": 0,
-		 "x56": 0}
+		"x13": 0,
+		"x23": 0,
+		"x24": 0,
+		"x25": 0,
+		"x35": 0,
+		"x36": 0,
+		"x45": 0,
+		"x47": 0,
+		"x48": 0,
+		"x56": 0,
+		"x57": 0,
+		"x58": 0,
+		"x59": 0,
+		"x68": 0,
+		"x69": 0,
+		"x78": 0,
+		"x710": 0,
+		"x89": 0,
+		"x810": 0,
+		"x910": 0}
 cosenes = {"x12": 0,
-		 "x13": 0,
-		 "x23": 0,
-		 "x24": 0,
-		 "x34": 0,
-		 "x35": 0,
-		 "x45": 0,
-		 "x46": 0,
-		 "x56": 0}
+		"x13": 0,
+		"x23": 0,
+		"x24": 0,
+		"x25": 0,
+		"x35": 0,
+		"x36": 0,
+		"x45": 0,
+		"x47": 0,
+		"x48": 0,
+		"x56": 0,
+		"x57": 0,
+		"x58": 0,
+		"x59": 0,
+		"x68": 0,
+		"x69": 0,
+		"x78": 0,
+		"x710": 0,
+		"x89": 0,
+		"x810": 0,
+		"x910": 0}
 prev_h = 100
 total = 100000
 current_h = 0
