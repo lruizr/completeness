@@ -47,7 +47,7 @@ def newAngle():
 				nodo6[key] = 1
 			#print nodo4[key]
 
-	actives = [nodo1["x12"], nodo1["x13"], nodo2["x23"], nodo2["x24"], nodo3["x34"]]
+	actives = [nodo1["x12"], nodo1["x13"], nodo2["x23"], nodo2["x24"], nodo3["x34"], nodo4["x45"], nodo4["x46"], nodo5["x56"]]
 	nodo1["output"] = [nodo1["x12"], nodo1["x13"]]
 	nodo2["input"] = [nodo1["x12"]]
 	nodo2["output"] = [nodo2["x23"], nodo2["x24"]]
