@@ -50,9 +50,11 @@ def newAngle():
 	actives = [nodo1["x12"], nodo1["x13"], nodo2["x23"], nodo2["x24"], nodo2["x25"], nodo3["x35"], nodo3["x36"], nodo4["x45"], nodo4["x47"], nodo4["x48"], \
 			nodo5["x56"], nodo5["x57"], nodo5["x58"], nodo5["x59"], nodo6["x68"], nodo6["x69"], nodo7["x78"], nodo7["x710"], nodo8["x89"], nodo8["x810"], \
 			nodo9["x910"]]
+
+	# TERMINAR!
 	nodo1["output"] = [nodo1["x12"], nodo1["x13"]]
 	nodo2["input"] = [nodo1["x12"]]
-	nodo2["output"] = [nodo2["x23"], nodo2["x24"]]
+	nodo2["output"] = [nodo2["x23"], nodo2["x24"], nodo2["x25"]]
 	nodo3["input"] = [nodo3["x13"], nodo3["x23"]]
 	nodo3["output"] = [nodo3["x34"]]
 	nodo4["input"] = [nodo4["x24"], nodo4["x34"]]
@@ -60,6 +62,7 @@ def newAngle():
 	nodo5["input"] = [nodo5["x35"], nodo5["x45"]]
 	nodo5["output"] = [nodo5["x56"]]
 	nodo6["input"] = [nodo6["x46"], nodo6["x56"]]
+	nodo6["output"] = [nodo6]
 	#print actives
 	#print cosenes
 	#print nodo1
@@ -67,7 +70,7 @@ def newAngle():
 	#print nodo3
 	#print nodo4
 
-def estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4, nodo5, nodo6):
+def estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4, nodo5, nodo6, nodo7, nodo8, nodo9, nodo10):
 	value1 = sum(nodo1["output"]) - 1
 	value2 = sum(nodo2["output"]) - sum(nodo2["input"])
 	value3 = sum(nodo3["output"]) - sum(nodo3["input"])
@@ -96,9 +99,14 @@ def check():
 	# Comprobar que los nodos son diferentes de 0 (una de las salidas y una de las entradas es distinta de 0)
 	if sum(nodo1["output"]) in [0,1] and sum(nodo2["input"]) in [0,1] and sum(nodo2["output"]) in [0,1] and sum(nodo3["input"]) in [0,1] and \
 		sum(nodo3["output"]) in [0,1] and sum(nodo4["input"]) in [0,1] and sum(nodo4["output"]) in [0,1] and sum(nodo5["input"]) in [0,1] and \
-		sum(nodo5["output"]) in [0,1] and sum(nodo6["input"]) in [0,1] and (nodo1["x12"] + nodo1["x13"] - 1) >= 0 \
-		and (nodo2["x12"] - nodo2["x23"] - nodo2["x24"]) >= 0 and (nodo3["x13"] + nodo3["x23"] - nodo3["x34"] - nodo3["x35"]) >= 0 and \
-		(nodo4["x24"] + nodo4["x34"] - nodo4["x45"] - nodo4["x46"]) >= 0 and (nodo5["x35"] + nodo5["x45"] - nodo5["x56"]) >= 0 and (nodo6["x46"] + nodo6["x56"] - 1) >= 0:
+		sum(nodo5["output"]) in [0,1] and sum(nodo6["input"]) in [0,1] and sum(nodo6["output"]) in [0,1] and sum(nodo7["input"]) in [0,1] and \
+		sum(nodo7["output"]) in [0,1] and sum(nodo8["input"]) in [0,1] and sum(nodo8["input"]) in [0,1] and sum(nodo8["output"]) in [0,1] and \
+		sum(nodo9["input"]) in [0,1] and sum(nodo9["output"]) in [0,1] and sum(nodo10["input"]) in [0,1] and (nodo1["x12"] + nodo1["x13"] - 1) >= 0 \
+		and (nodo2["x12"] - nodo2["x23"] - nodo2["x24"] - nodo2["x25"]) >= 0 and (nodo3["x13"] + nodo3["x23"] - nodo3["x35"] - nodo3["x36"]) >= 0 and \
+		(nodo4["x24"] - nodo4["x45"] - nodo4["x47"] - nodo4["x48"]) >= 0 and (nodo5["x25"] + nodo5["x35"] + nodo5["x45"] - nodo5["x56"] - nodo5["x57"] - \
+		nodo5["x58"] - nodo5["x59"]) >= 0 and (nodo6["x36"] + nodo6["x56"] - nodo6["x68"] - nodo6["x69"]) >= 0 and (nodo7["x47"] + nodo7["x57"] - nodo7["x78"] - \
+		nodo7["x710"]) >= 0 and (nodo8["x48"] + nodo8["x58"] + nodo8["x68"] + nodo8["x78"] - nodo8["x89"] - nodo["x810"]) >= 0 and (nodo9["x59"] + nodo9["x69"] + \
+		nodo9["x89"] - nodo9["x910"]) >= 0 and (nodo10["x710"] + nodo10["x810"] + nodo10["x910"]) >= 0:
 		return True
 	else:
 		return False
