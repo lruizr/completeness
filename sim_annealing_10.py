@@ -9,7 +9,6 @@ def newAngle():
 	for key in angles.keys():
 		num = random.uniform(0,1) * 2 * math.pi
 		angles[key] = num
-		#print angle[key]
 	for key in cosenes.keys():
 		cosenes[key] = math.cos(angles[key])
 		if key in nodo1.keys():
@@ -17,19 +16,16 @@ def newAngle():
 				nodo1[key] = 0
 			else:
 				nodo1[key] = 1
-			#print nodo1[key]
 		if key in nodo2.keys():
 			if cosenes[key] >= 0:
 				nodo2[key] = 0
 			else:
 				nodo2[key] = 1
-			#print nodo2[key]
 		if key in nodo3.keys():
 			if cosenes[key] >= 0:
 				nodo3[key] = 0
 			else:
 				nodo3[key] = 1
-			#print nodo3[key]
 		if key in nodo4.keys():
 			if cosenes[key] >= 0:
 				nodo4[key] = 0
@@ -45,30 +41,51 @@ def newAngle():
 				nodo6[key] = 0
 			else:
 				nodo6[key] = 1
-			#print nodo4[key]
+		if key in nodo7.keys():
+			if cosenes[key] >= 0:
+				nodo7[key] = 0
+			else:
+				nodo7[key] = 1
+		if key in nodo8.keys():
+			if cosenes[key] >= 0:
+				nodo8[key] = 0
+			else:
+				nodo8[key] = 1
+		if key in nodo9.keys():
+			if cosenes[key] >= 0:
+				nodo9[key] = 0
+			else:
+				nodo9[key] = 1
+		if key in nodo10.keys():
+			if cosenes[key] >= 0:
+				nodo10[key] = 0
+			else:
+				nodo10[key] = 1
+	
 
 	actives = [nodo1["x12"], nodo1["x13"], nodo2["x23"], nodo2["x24"], nodo2["x25"], nodo3["x35"], nodo3["x36"], nodo4["x45"], nodo4["x47"], nodo4["x48"], \
 			nodo5["x56"], nodo5["x57"], nodo5["x58"], nodo5["x59"], nodo6["x68"], nodo6["x69"], nodo7["x78"], nodo7["x710"], nodo8["x89"], nodo8["x810"], \
 			nodo9["x910"]]
 
-	# TERMINAR!
 	nodo1["output"] = [nodo1["x12"], nodo1["x13"]]
 	nodo2["input"] = [nodo1["x12"]]
 	nodo2["output"] = [nodo2["x23"], nodo2["x24"], nodo2["x25"]]
 	nodo3["input"] = [nodo3["x13"], nodo3["x23"]]
-	nodo3["output"] = [nodo3["x34"]]
-	nodo4["input"] = [nodo4["x24"], nodo4["x34"]]
-	nodo4["output"] = [nodo4["x45"], nodo4["x46"]]
-	nodo5["input"] = [nodo5["x35"], nodo5["x45"]]
-	nodo5["output"] = [nodo5["x56"]]
-	nodo6["input"] = [nodo6["x46"], nodo6["x56"]]
-	nodo6["output"] = [nodo6]
-	#print actives
-	#print cosenes
-	#print nodo1
-	#print nodo2
-	#print nodo3
-	#print nodo4
+	nodo3["output"] = [nodo3["x35"], nodo3["x36"]]
+	nodo4["input"] = [nodo4["x24"]]
+	nodo4["output"] = [nodo4["x45"], nodo4["x47"], nodo4["x48"]]
+	nodo5["input"] = [nodo5["x25"], nodo5["x35"], nodo5["x45"]]
+	nodo5["output"] = [nodo5["x56"], nodo5["x57"], nodo5["x58"], nodo5["x59"]]
+	nodo6["input"] = [nodo6["x36"], nodo6["x56"]]
+	nodo6["output"] = [nodo6["x68"], nodo6["x69"]]
+	nodo7["input"] = [nodo7["x47"], nodo7["x57"]]
+	nodo7["output"] = [nodo7["x78"], nodo7["x710"]]
+	nodo8["input"] = [nodo8["x48"], nodo8["x58"], nodo8["x68"], nodo8["x78"]]
+	nodo8["output"] = [nodo8["x89"], nodo8["x810"]]
+	nodo9["input"] = [nodo9["x59"], nodo9["x69"], nodo9["x89"]]
+	nodo9["output"] = [nodo9["x910"]]
+	nodo10["input"] = [nodo10["x710"], nodo10["x810"], nodo10["x910"]]
+
 
 def estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4, nodo5, nodo6, nodo7, nodo8, nodo9, nodo10):
 	value1 = sum(nodo1["output"]) - 1
@@ -84,7 +101,7 @@ def estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4, nodo5, nodo6
 	addition = 0
 	for active, distance in zip(actives, distances_list):
 		addition += active*distance
-	return addition + math.pow(value1, 2) + math.pow(value2, 2) + math.pow(value3, 2) + math.pow(value4, 2) + math.pow(value5, 2) \
+	return addition + math.pow(value1, 2) + math.pow(value2, 2) + math.pow(value3, 2) + math.pow(value4, 2) + math.pow(value5, 2) +\
 			math.pow(value6, 2) + math.pow(value7, 2) + math.pow(value8, 2) + math.pow(value9, 2) + math.pow(value10, 2)
 
 def accept(iter):
@@ -105,7 +122,7 @@ def check():
 		and (nodo2["x12"] - nodo2["x23"] - nodo2["x24"] - nodo2["x25"]) >= 0 and (nodo3["x13"] + nodo3["x23"] - nodo3["x35"] - nodo3["x36"]) >= 0 and \
 		(nodo4["x24"] - nodo4["x45"] - nodo4["x47"] - nodo4["x48"]) >= 0 and (nodo5["x25"] + nodo5["x35"] + nodo5["x45"] - nodo5["x56"] - nodo5["x57"] - \
 		nodo5["x58"] - nodo5["x59"]) >= 0 and (nodo6["x36"] + nodo6["x56"] - nodo6["x68"] - nodo6["x69"]) >= 0 and (nodo7["x47"] + nodo7["x57"] - nodo7["x78"] - \
-		nodo7["x710"]) >= 0 and (nodo8["x48"] + nodo8["x58"] + nodo8["x68"] + nodo8["x78"] - nodo8["x89"] - nodo["x810"]) >= 0 and (nodo9["x59"] + nodo9["x69"] + \
+		nodo7["x710"]) >= 0 and (nodo8["x48"] + nodo8["x58"] + nodo8["x68"] + nodo8["x78"] - nodo8["x89"] - nodo8["x810"]) >= 0 and (nodo9["x59"] + nodo9["x69"] + \
 		nodo9["x89"] - nodo9["x910"]) >= 0 and (nodo10["x710"] + nodo10["x810"] + nodo10["x910"]) >= 0:
 		return True
 	else:
@@ -190,13 +207,13 @@ for i in nodo5["output"]:
 for i in nodo6["output"]:
 	actives.append(i)
 for i in nodo7["output"]:
-	actives.append()
+	actives.append(i)
 for i in nodo8["output"]:
-	actives.append()
+	actives.append(i)
 for i in nodo9["output"]:
-	actives.append()
+	actives.append(i)
 for i in nodo10["output"]:
-	actives.append()
+	actives.append(i)
 distances = {"x12": 15,
 			"x13": 10,
 			"x23": 5,
@@ -275,7 +292,7 @@ for i in range(total):
 	while not check():
 		newAngle()
 
-	current_h = estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4, nodo5, nodo6)
+	current_h = estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4, nodo5, nodo6, nodo7, nodo8, nodo9, nodo10)
 	if current_h < prev_h:
 		if check():
 			prev_h = current_h
