@@ -65,7 +65,7 @@ def estimateH(distances_list, actives,  nodo1, nodo2, nodo3, nodo4):
 def accept(iter):
 	num = random.uniform(0,1)
 	prob = math.exp(-iter/total)
-	if num > prob:
+	if num <= prob:
 		return True
 	else:
 		return False
@@ -131,6 +131,7 @@ current_h = 0
 
 # Empieza la iteracion
 for i in range(total):
+	current_h = 0
 	newAngle()
 	while not check():
 		newAngle()
